@@ -7,7 +7,7 @@ namespace :db do
                          password_confirmation: "foobar",
                          admin: true)
     User.create!(name: "Example User",
-                 email: "example@railstutorial.org",
+                 email: "example1@railstutorial.org",
                  password: "foobar",
                  password_confirmation: "foobar")
     99.times do |n|
