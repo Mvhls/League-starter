@@ -18,6 +18,15 @@ describe "League" do
   	it { should_not be_valid }
   end
 
+  describe "when name is already taken" do 
+  	before do
+	  	league_with_same_name = @league.dup
+	  	league_with_same_name.save
+	  end
+
+	  it { should_not be_valid }
+  end
+
   describe "when name format is invalid" do 
   	it "should be invalid" do 
   		leagues = %w[cpp; meqan$ sdlkfjgh&]
