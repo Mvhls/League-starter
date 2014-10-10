@@ -1,4 +1,7 @@
 class League < ActiveRecord::Base
+	belongs_to :user
+	validates :user_id, presence: true
+
 	VALID_LEAGUE_NAME_REGEX = /\w\s/
 	validates :name, presence: true, length: { maximum: 30 }, 
 						format: { with: VALID_LEAGUE_NAME_REGEX }, 
