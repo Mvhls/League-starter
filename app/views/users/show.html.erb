@@ -9,3 +9,11 @@
 		</section>
 	</aside>
 </div>
+		<div>
+			<h2>Leagues</h2>
+			<% @user.leagues.each do |league| %>
+				<p><%= link_to league.name, league %></p>
+			<% end %>
+		</div>
+	</div>
+<div>
