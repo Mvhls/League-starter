@@ -12,7 +12,8 @@
 		<div>
 			<h2>Leagues</h2>
 			<% @user.leagues.each do |league| %>
-				<p><%= link_to league.name, league %></p>
+				<% commissioner = User.find(league.user_id).name %>
+				<p><%= link_to "#{league.name}  (#{commissioner})", league %></p>
 			<% end %>
 		</div>
 	</div>

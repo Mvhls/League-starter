@@ -1,0 +1,8 @@
+<%= provide(:title, "Leagues") %>
+
+<h1>Leagues</h1>
+
+<% @leagues.each do |league| %>
+	<% commissioner = User.find(league.user_id).name %>
+	<p><%= link_to "#{league.name}  (#{commissioner})", league %></p>
+<% end %>
