@@ -20,6 +20,7 @@ describe "Authentication" do
 
 			it { should have_title('Sign in') }
 			it { should have_selector('div.alert.alert-error') }
+      it { should_not have_link('Leagues', href: leagues_path) }
 
 			describe "after visiting another page" do 
 				before { click_link "Home" }
@@ -37,6 +38,7 @@ describe "Authentication" do
 			it { should have_link('Settings', href: edit_user_path(user)) }
 			it { should have_link('Sign out', href: signout_path) }
 			it { should_not have_link('Sign in', href: signin_path) }
+      it { should have_link('Leagues', href: leagues_path) }
 
 			describe "followed by signout" do 
 				before { click_link "Sign out" }
@@ -50,13 +52,11 @@ describe "Authentication" do
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
 
-       describe "when attempting to visit a protected page" do
-        before do
-          visit edit_user_path(user)
-          sign_in(user)
-        end
+       describe "when attempting to visit the edit page" do
+        before { visit edit_user_path(user) }
 
         describe "after signing in" do
+          before { sign_in(user) }
 
           it "should render the desired protected page" do
             expect(page).to have_title('Edit user')

@@ -54,15 +54,16 @@ describe "User Pages" do
 	describe "profile page" do 
 		let(:user) { FactoryGirl.create(:user) }
 		before do
-			user.leagues.build(name: "example league")
-			user.leagues.build(name: "example league 2")
+			user.leagues.create(name: "example league")
+			user.leagues.create(name: "example league 2")
 			sign_in(user)
 		end
 
 		it { should have_content(user.name) }
 		it { should have_title(user.name) }
-		xit { should have_content(user.leagues.first.name) }
-		xit { should have_content(user.leagues.last.name) }
+		it { should have_content("example league") }
+		it { should have_content("example league 2") }
+		it { should have_content("Create a league")}
 	end
 
 	describe "signup page" do 

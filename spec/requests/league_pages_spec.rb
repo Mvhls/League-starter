@@ -30,4 +30,13 @@ describe "league pages" do
 		it { should have_content("example league") }
 	end
 
+	describe "when creating a new league" do
+
+		describe "with invalid credentials" do 
+			before { visit new_users_league_path }
+
+			it { should have_content("Sign up now!")}
+		end
+	end
+
 end
