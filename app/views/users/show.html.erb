@@ -15,7 +15,7 @@
 				<% commissioner = User.find(league.user_id).name %>
 				<p><%= link_to "#{league.name}  (#{commissioner})", league %></p>
 			<% end %>
-			<p><%= link_to "Create a league", new_users_league_path %></p>
+			<p><%= link_to "Create a league", new_user_league_path(@user) %></p>
 		</div>
 	</div>
 <div>

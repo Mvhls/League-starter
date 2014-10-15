@@ -9,7 +9,7 @@ class LeaguesController < ApplicationController
 	end
 
 	def new
-		@user = User.find(params[:id])
+		@user = User.find(params[:user_id])
 		@league = @user.leagues.new
 	end
 end

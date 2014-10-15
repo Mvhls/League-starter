@@ -13,8 +13,8 @@ describe "league pages" do
 		end
 
 		it { should have_title("Leagues") }
-		it { should have_content("Leagues")}
-		it { should have_content("example league")}
+		it { should have_content("Leagues") }
+		it { should have_content("example league") }
 	end
 
 	
@@ -32,10 +32,13 @@ describe "league pages" do
 
 	describe "when creating a new league" do
 
-		describe "with invalid credentials" do 
-			before { visit new_users_league_path }
-
-			it { should have_content("Sign up now!")}
+		describe "when signed in" do 
+			before do 
+				sign_in(user)
+				visit new_user_league_path(user)
+			end
+			it { should have_title("Create League") }
+			it { should have_button("Create your league!") }
 		end
 	end
 
