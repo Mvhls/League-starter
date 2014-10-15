@@ -40,6 +40,12 @@ describe "league pages" do
 			it { should have_title("Create League") }
 			it { should have_button("Create your league!") }
 		end
+
+		describe "after creating league" do 
+			before do 
+				fill_in
+			end
+		end
 	end
 
 end
