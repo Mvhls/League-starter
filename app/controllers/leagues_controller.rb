@@ -2,7 +2,7 @@ class LeaguesController < ApplicationController
 	before_action :correct_user, only: [:new, :create]
 
 	def index
-		@leagues = League.all
+		@leagues = League.paginate(page: params[:page])
 	end
 
 	def show

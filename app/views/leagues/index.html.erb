@@ -2,7 +2,13 @@
 
 <h1>Leagues</h1>
 
-<% @leagues.each do |league| %>
-	<% commissioner = User.find(league.user_id).name %>
-	<p><%= link_to "#{league.name}  (#{commissioner})", league %></p>
-<% end %>
+<%= will_paginate %>
+
+<ul class="users">
+	<% @leagues.each do |league| %>
+		<% commissioner = User.find(league.user_id).name %>
+		<li><%= link_to "#{league.name}  (#{commissioner})", league %></li>
+	<% end %>
+</ul>
+
+<%= will_paginate %>
