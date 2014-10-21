@@ -32,20 +32,39 @@ describe "league pages" do
 
 	describe "when creating a new league" do
 
-		describe "when signed in" do 
+		describe "when signed in as correct user" do 
 			before do 
 				sign_in(user)
 				visit new_user_league_path(user)
 			end
 			it { should have_title("Create League") }
 			it { should have_button("Create your league!") }
+
+			describe "after creating league" do 
+				before do 
+					fill_in "Name", with: "example league 2"
+					click_button "Create your league!"
+				end
+
+				it { should have_title("example league 2") }
+			end
 		end
 
-		describe "after creating league" do 
-			before do 
-				fill_in
+		describe "when signed in as incorrect user" do 
+			let(:incorrect_user) { FactoryGirl.create(:user) }
+			before { sign_in(incorrect_user) }
+
+			describe "when trying visiting another user's page" do 
+				before { visit user_path(user) }
+				it { should_not have_content("Create a league") }
+			end
+
+			describe "when trying to create a league under the wrong user" do 
+				before { visit new_user_league_path(user) }
+				
+				it { should_not have_title("Create League") }
+				it { should have_title("Home") }
 			end
 		end
 	end
-
 end

@@ -1,4 +1,5 @@
 class LeaguesController < ApplicationController
+	before_action :correct_user, only: [:new, :create]
 
 	def index
 		@leagues = League.all
@@ -29,4 +30,9 @@ class LeaguesController < ApplicationController
 		def league_params
 			params.require(:league).permit(:name)
 		end
+
+		def correct_user
+      @user = User.find(params[:user_id])
+      redirect_to(root_url) unless current_user?(@user)
+    end
 end
