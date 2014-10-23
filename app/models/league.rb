@@ -1,5 +1,6 @@
 class League < ActiveRecord::Base
 	belongs_to :user
+	has_many :teams
 	validates :user_id, presence: true
 
 	VALID_LEAGUE_NAME_REGEX = /\w\s/
