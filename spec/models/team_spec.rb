@@ -55,5 +55,25 @@ describe Team do
   	end
   end
 
-  describe "when a name is already taken"
+  describe "when a name is already taken" do 
+
+    describe "with a name from the same league" do
+      before do 
+        team_with_same_name = @team.dup
+        team_with_same_name.save
+      end
+
+      it { should_not be_valid }
+    end
+
+    describe "with a name from a different league" do 
+      before do 
+        team_with_same_name = @team.dup
+        team_with_same_name.league_id = 2
+        team_with_same_name.save
+      end
+
+      it { should be_valid }
+    end
+  end
 end
