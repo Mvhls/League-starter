@@ -14,3 +14,8 @@ def sign_in(user, options={})
   end
 end
 
+def create_user_league
+  let(:user) { FactoryGirl.create(:user) }
+  let(:league) { user.leagues.create(name: "example league") }
+end
+

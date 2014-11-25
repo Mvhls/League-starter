@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Team do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:league) { user.leagues.create(name: "example league") }
+
+  create_user_league #utilities
 
   before do 
   	@team = league.teams.build(name: "example team")
