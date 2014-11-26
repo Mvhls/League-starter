@@ -1,0 +1,7 @@
+<% provide(:title, "Teams") %>
+<h1>teams for <%= @league.name %></h1>
+<ul>
+	<% @league.teams.each do |team| %>
+	<li><%= team.name %></li>
+	<% end %>
+</ul>
