@@ -1,0 +1,11 @@
+<% @user.leagues.each do |league| %>
+	<p>
+		<%= link_to "#{league.name}  (#{@user.name})", league %>
+	</p>
+<% end %>
+
+<% if  current_user?(@user) %>
+	<p>
+		<%= link_to "Create a league", new_user_league_path(@user) %>
+	</p>		
+<% end %>

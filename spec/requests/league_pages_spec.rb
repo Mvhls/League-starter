@@ -67,4 +67,20 @@ describe "league pages" do
 			end
 		end
 	end
+
+	describe "when deleting a league" do 
+
+		before do 
+			user.leagues.create(name: "example league")
+			sign_in(user)
+		end
+
+		describe "as the commissioner of the league" do 
+			before do 
+				click_link("delete")
+			end
+			it { should_not have_content("example league") }
+		end
+	end
+	
 end

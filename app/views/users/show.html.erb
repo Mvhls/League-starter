@@ -11,13 +11,7 @@
 </div>
 		<div>
 			<h2>Leagues</h2>
-			<% @user.leagues.each do |league| %>
-				<% commissioner = User.find(league.user_id).name %>
-				<p><%= link_to "#{league.name}  (#{commissioner})", league %></p>
-			<% end %>
-			<% if  current_user?(@user) %>
-				<p><%= link_to "Create a league", new_user_league_path(@user) %></p>		
-			<% end %>
+			<%= render "user_leagues" %>
 		</div>
 	</div>
 <div>
