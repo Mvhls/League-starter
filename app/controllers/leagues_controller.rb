@@ -1,5 +1,5 @@
 class LeaguesController < ApplicationController
-	before_action :correct_user, only: [:new, :create]
+	before_action :correct_user, only: [:new, :create, :destroy]
 
 	def index
 		@leagues = League.paginate(page: params[:page])
@@ -24,6 +24,14 @@ class LeaguesController < ApplicationController
 			render 'new'
 		end
 	end
+
+	def destroy
+		@user = User.find(params[:user_id]) # for redirecting
+
+    League.find(params[:id]).destroy
+    flash[:success] = "League deleted"
+    redirect_to user_url(@user)
+  end
 
 	private
 

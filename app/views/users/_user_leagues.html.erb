@@ -1,6 +1,10 @@
 <% @user.leagues.each do |league| %>
 	<p>
 		<%= link_to "#{league.name}  (#{@user.name})", league %>
+		<% if current_user.id == @user.id %>
+			| <%= link_to "delete", [@user, league], method: :delete,
+                                  data: { confirm: "You sure?" } %>
+		<% end %>
 	</p>
 <% end %>
 
