@@ -33,9 +33,25 @@ describe "team pages" do
 				click_button('Create')
 			end
 			
-			it { should have_title("Teams") }
+			it { should have_title("#{league.name}") }
 			it { should have_content("example team") }
 			it { should have_content("example league") }
+		end
+	end
+
+	describe "when trying to delete a team" do 
+		before do 
+			visit league_path(league)
+			fill_in('Name', :with => 'example team')
+			click_button('Create')
+		end
+
+		describe "when deleting a team without credentials" do 
+			xit { should_not have_content("delete") }
+		end
+
+		describe "when deleting a team wit credentials" do
+			click_link 
 		end
 	end
 end
