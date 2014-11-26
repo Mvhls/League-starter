@@ -4,10 +4,7 @@ describe "team pages" do
 
 	subject { page }
 
-	# create_user_league
-
-	let(:user) { FactoryGirl.create(:user) }
-  let(:league) { user.leagues.create(name: "example league") }
+	create_user_league
 
 	describe "when visiting the index" do 
 		before do 
@@ -19,5 +16,26 @@ describe "team pages" do
 		it { should have_content("example team") }
 		it { should have_content("example league") }
 
+	end
+
+	describe "when creating a new team" do 
+		before do 
+			visit league_path(league)
+			click_link "Create a team"
+		end
+
+		it { should have_title("Create Team") }
+
+
+		describe "when creating a new team" do 
+			before do 
+				fill_in('Name', :with => 'example team')
+				click_button('Create')
+			end
+			
+			it { should have_title("Teams") }
+			it { should have_content("example team") }
+			it { should have_content("example league") }
+		end
 	end
 end
