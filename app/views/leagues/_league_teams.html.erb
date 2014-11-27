@@ -1,0 +1,11 @@
+<ul>
+	<% @league.teams.each do |team| %>
+		<li>
+			<%= link_to "#{team.name}", league_team_path(@league, team.id) %>
+			<% if current_user.id == @league.user_id %>
+				| <%= link_to "delete", [@league, team], method: :delete, data: { confirm: "you sure?" } %>
+			<% end %>
+		</li>		
+	<% end %>
+</ul>
+<p><%= link_to "Create a team", new_league_team_path(@league) %></p>

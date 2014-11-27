@@ -42,16 +42,15 @@ describe "team pages" do
 	describe "when trying to delete a team" do 
 		before do 
 			visit league_path(league)
+			click_link "Create a team"
 			fill_in('Name', :with => 'example team')
 			click_button('Create')
 		end
 
-		describe "when deleting a team without credentials" do 
-			xit { should_not have_content("delete") }
-		end
+		describe "when deleting a team with credentials" do
+			before { click_link("delete") }
 
-		describe "when deleting a team wit credentials" do
-			click_link 
+			it { should_not have_content("example team") }
 		end
 	end
 end

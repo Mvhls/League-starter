@@ -2,10 +2,4 @@
 
 <h1><%= @league.name %></h1>
 <h2>teams</h2>
-<p>team names</p>
-<ul>
-	<% @league.teams.each do |team| %>
-		<li><%= link_to "#{team.name}", league_team_path(@league, team.id) %></li>
-	<% end %>
-</ul>
-<p><%= link_to "Create a team", new_league_team_path(@league) %></p>
+<%= render "league_teams" %>
