@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+	before_action :correct_user, only: [:destroy]
 
 	def index
 		@league = League.find(params[:league_id])
@@ -25,9 +26,23 @@ class TeamsController < ApplicationController
 		end
 	end
 
+	def destroy
+		league = League.find(params[:league_id])
+		Team.find(params[:id]).destroy
+		flash[:success] = "Team was deleted"
+		redirect_to league_url(league)
+	end
+
 	private
 
 		def team_params
 			params.require(:team).permit(:name)
+		end
+
+		def correct_user
+			user_id = League.find(params[:league_id]).user_id
+			@user = User.find(user_id)
+			
+			redirect_to root_url unless current_user?(@user)
 		end
 end

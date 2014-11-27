@@ -20,6 +20,7 @@ describe "team pages" do
 
 	describe "when on the create team page" do 
 		before do 
+			sign_in(user)
 			visit league_path(league)
 			click_link "Create a team"
 		end
