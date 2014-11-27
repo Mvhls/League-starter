@@ -18,7 +18,7 @@ describe "team pages" do
 
 	end
 
-	describe "when creating a new team" do 
+	describe "when on the create team page" do 
 		before do 
 			visit league_path(league)
 			click_link "Create a team"
@@ -39,12 +39,17 @@ describe "team pages" do
 		end
 	end
 
-	describe "when trying to delete a team" do 
+	describe "when looking at the teams in the league pages" do 
 		before do 
+			sign_in(user)
 			visit league_path(league)
 			click_link "Create a team"
 			fill_in('Name', :with => 'example team')
 			click_button('Create')
+		end
+
+		describe "as the commissioner" do 
+			it { should have_content("delete") }
 		end
 
 		describe "when deleting a team with credentials" do
