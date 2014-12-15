@@ -43,7 +43,7 @@ describe "League" do
 
   describe "when name format is invalid" do 
   	it "should be invalid" do 
-  		leagues = %w[cpp; meqan$ sdlkfjgh&]
+  		leagues = %w[;cpp; meqan$ sdlkfjgh&]
 			leagues.each do |invalid_league|
 				@league.name = invalid_league
 				expect(@league).not_to be_valid
