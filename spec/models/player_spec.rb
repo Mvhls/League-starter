@@ -1,4 +1,3 @@
-
 require 'spec_helper'
 
 describe "Player" do
@@ -21,4 +20,21 @@ describe "Player" do
 
   	it { should eq(user.name) }
   end
+
+  describe "when creating a player" do 
+    before { @new_player = Player.create }
+    subject { @new_player }
+
+    describe "when making a player without a user id" do 
+      before { @new_player.update_attributes(league_id: league.id) }
+      it { should be_valid }
+    end
+
+    describe "when creating a player without a league id" do 
+
+      it { should_not be_valid }
+    end
+  end
+
+
 end
