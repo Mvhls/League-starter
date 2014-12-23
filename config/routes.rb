@@ -9,7 +9,9 @@ LeagueStarter::Application.routes.draw do
     resources :teams, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
-  resources :teams, only: [:show]
+  resources :teams, only: [:show] do 
+    resources :players, only: [:create]
+  end
 
   root 'static_pages#home'
   match '/signup', to: 'users#new', via: 'get'

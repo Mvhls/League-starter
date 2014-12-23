@@ -1,1 +1,7 @@
 <% provide(:title, @team.name) %>
+
+<%= link_to "join this team", team_players_path(@team), method: :post %>
+<h2>Players</h2>
+<% @team.players.each do |player| %>
+	<p><%= player.name %></p>
+<% end %>
