@@ -4,15 +4,16 @@ describe "Player" do
 
 	let(:user) { FactoryGirl.create(:user) }
 	let(:league) { user.leagues.create(name: "example league", user_id: user.id) }
+  let(:team) { league.teams.create(name: "example team") }
 
   before do
-  	@player = Player.create(user_id: user.id, league_id: league.id)
+  	@player = Player.create(user_id: user.id, team_id: team.id)
   end
 
   subject { @player }
 
   it { should respond_to(:user_id) }
-  it { should respond_to(:league_id) }
+  it { should respond_to(:team_id) }
   it { should respond_to(:name) }
 
   describe "when searching for the players name" do 
@@ -26,12 +27,11 @@ describe "Player" do
     subject { @new_player }
 
     describe "when making a player without a user id" do 
-      before { @new_player.update_attributes(league_id: league.id) }
+      before { @new_player.update_attributes(team_id: team.id) }
       it { should be_valid }
     end
 
-    describe "when creating a player without a league id" do 
-
+    describe "when creating a player without a team id" do 
       it { should_not be_valid }
     end
   end
