@@ -23,7 +23,8 @@ describe "team pages" do
 		before do 
 			visit league_team_path(league, team.id)
 		end
-		it { should have_title("#{team.name}")}
+		it { should have_title("#{team.name}") }
+		it { should have_content("join this team") }
 	end
 
 	describe "when on the create team page" do 

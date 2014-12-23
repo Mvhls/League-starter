@@ -6,8 +6,10 @@ LeagueStarter::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :leagues, only: [:index, :show] do 
-    resources :teams
+    resources :teams, only: [:index, :new, :create, :edit, :update, :destroy]
   end
+
+  resources :teams, only: [:show]
 
   root 'static_pages#home'
   match '/signup', to: 'users#new', via: 'get'
