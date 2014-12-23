@@ -7,7 +7,7 @@ describe "Player" do
   let(:team) { league.teams.create(name: "example team") }
 
   before do
-  	@player = Player.create(user_id: user.id, team_id: team.id)
+  	@player = Player.create(user_id: user.id, team_id: team.id, league_id: league.id)
   end
 
   subject { @player }
@@ -15,6 +15,7 @@ describe "Player" do
   it { should respond_to(:user_id) }
   it { should respond_to(:team_id) }
   it { should respond_to(:name) }
+  it { should respond_to(:league_id) }
 
   describe "when searching for the players name" do 
   	subject { @player.name }
@@ -27,11 +28,17 @@ describe "Player" do
     subject { @new_player }
 
     describe "when making a player without a user id" do 
-      before { @new_player.update_attributes(team_id: team.id) }
+      before { @new_player.update_attributes(team_id: team.id, league_id: league.id) }
       it { should be_valid }
     end
 
     describe "when creating a player without a team id" do 
+      before { @new_player.update_attributes(league_id: league.id) }
+      it { should_not be_valid }
+    end
+
+    describe "when creating a player without a league id" do
+      before { @new_player.update_attributes(team_id: team.id) }
       it { should_not be_valid }
     end
   end

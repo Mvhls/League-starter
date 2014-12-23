@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 	has_many :leagues
+	has_many :players
 
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
