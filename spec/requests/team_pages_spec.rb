@@ -20,11 +20,28 @@ describe "team pages" do
 	end
 
 	describe "when visiting the team page" do 
-		before do 
+		before do
+			sign_in(user) 
 			visit team_path(team.id)
 		end
 		it { should have_title("#{team.name}") }
 		it { should have_content("join this team") }
+
+		describe "when trying to join a team you are not on" do 
+			before { click_link("join this team") }
+
+			it { should have_content("#{user.name}") }
+			it { should have_content("You are now part of the #{team.name}!")}
+			
+			describe "when trying to join a team you already on" do 
+				before do
+					click_link("join this team")
+				end
+
+				it { should have_content("You are already on this team") }
+			end
+		end
+
 	end
 
 	describe "when on the create team page" do 
