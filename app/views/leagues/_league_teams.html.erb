@@ -2,7 +2,7 @@
 	<% @league.teams.each do |team| %>
 		<li>
 			<%= link_to "#{team.name}", team_path(team.id) %>
-			<% if current_user.id == @league.user_id %>
+			<% if current_user?(@user) %>
 				| <%= link_to "delete", [@league, team], method: :delete, data: { confirm: "you sure?" } %>
 			<% end %>
 		</li>		
