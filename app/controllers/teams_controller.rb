@@ -28,9 +28,13 @@ class TeamsController < ApplicationController
 
 	def destroy
 		league = League.find(params[:league_id])
-		Team.find(params[:id]).destroy
-		flash[:success] = "Team was deleted"
-		redirect_to league_url(league)
+		if current_user.id == league.user_id # only league commissioner can delete a team
+			Team.find(params[:id]).destroy
+			flash[:success] = "Team was deleted"
+			redirect_to league_url(league)
+		else
+			redirect_to root_url
+		end
 	end
 
 	private
