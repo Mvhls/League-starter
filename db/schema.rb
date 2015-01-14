@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223210802) do
+ActiveRecord::Schema.define(version: 20150114221604) do
 
   create_table "leagues", force: true do |t|
     t.string   "name"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20141223210802) do
     t.datetime "updated_at"
     t.integer  "league_id"
   end
+
+  create_table "stat_types", force: true do |t|
+    t.string   "name"
+    t.integer  "league_id"
+    t.integer  "stat_source_id"
+    t.string   "stat_source_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stat_types", ["stat_source_id"], name: "index_stat_types_on_stat_source_id"
 
   create_table "teams", force: true do |t|
     t.string   "name"
