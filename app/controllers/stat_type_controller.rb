@@ -1,2 +1,3 @@
 class StatTypeController < ApplicationController
+	
 end

@@ -7,6 +7,7 @@ LeagueStarter::Application.routes.draw do
 
   resources :leagues, only: [:index, :show] do 
     resources :teams, only: [:index, :new, :create, :edit, :update, :destroy]
+    # resources :stat_types, only: [:new]
   end
 
   resources :teams, only: [:show] do 
