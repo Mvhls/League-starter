@@ -15,7 +15,6 @@ describe "league pages" do
 		it { should have_title("Leagues") }
 		it { should have_content("Leagues") }
 		it { should have_content("example league") }
-		xit { should have_content("Create a team stat")}
 	end
 
 	
@@ -29,6 +28,15 @@ describe "league pages" do
 
 		it { should have_title("example league") }
 		it { should have_content("example league") }
+		xit { should have_content("Create a team stat")}
+
+		describe "when trying to create a team stat type" do 
+			before do 
+				click_link("Create a team stat")
+			end
+
+			xit { should have_content("something") }
+		end
 	end
 
 	describe "when creating a new league" do
@@ -82,14 +90,6 @@ describe "league pages" do
 			end
 			it { should_not have_content("example league") }
 		end
-	end
-
-	describe "when trying to create a team stat type" do 
-		before do 
-			click_link("Create a team stat")
-		end
-
-		xit { should have_content("something") }
 	end
 	
 end

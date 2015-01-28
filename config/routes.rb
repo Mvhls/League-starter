@@ -5,7 +5,8 @@ LeagueStarter::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  resources :leagues, only: [:index, :show] do 
+  resources :leagues, only: [:index, :show] do
+    resources :stat_types, only: [:new, :create, :edit, :update, :destroy] 
     resources :teams, only: [:index, :new, :create, :edit, :update, :destroy]
     # resources :stat_types, only: [:new]
   end
