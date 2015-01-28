@@ -20,26 +20,6 @@ describe StatType do
 
   it { should be_valid }
 
-  describe "when a stat is made for a team" do
-  	before do
-  		team.stat_types.build(name: "example team stat", league_id: team.league_id)
-  	end
-
-  	it { should respond_to(:stat_source_id) }
-  	it { should respond_to(:stat_source_type) }
-  	it { should be_valid }
-  end
-
-  describe "when a stat is made for a team" do
-  	before do
-  		player.stat_types.build(name: "example player stat", league_id: player.league_id)
-
-  		it { should respond_to(:stat_source_id) }
-  		it { should respond_to(:stat_source_type) }
-  		it { should be_valid }
-  	end
-  end
-
   describe "when a name is not present" do
   	before { @stat_type.name = " " }
 

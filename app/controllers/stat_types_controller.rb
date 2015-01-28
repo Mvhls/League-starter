@@ -5,4 +5,8 @@ class StatTypeController < ApplicationController
 		@stat_type = @league.stat_types.new
 	end
 
+	def show
+		@league = League.find(params[:league_id])
+	end
+
 end
