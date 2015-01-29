@@ -2,4 +2,8 @@
 
 <h1>Stats</h1>
 
+<% @stat_types.each do |stat_type| %>
+	<p><%= stat_type.name %> | <%= link_to "delete", [@league, stat_type], method: :delete, data: { confirm: "you sure?" } %></p>
+<% end %>
+
 <%= link_to "Create a stat", new_league_stat_type_path(@league) %>
