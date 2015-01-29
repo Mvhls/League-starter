@@ -1,7 +1,6 @@
 class Team < ActiveRecord::Base
 	belongs_to :league
 	has_many :players
-	has_many :stat_types, as: :stat_source
 	
 	validates :league_id, presence: true
 	VALID_TEAM_NAME_REGEX = /\A[\w\s]+\Z/

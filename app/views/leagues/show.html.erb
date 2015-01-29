@@ -4,4 +4,4 @@
 <h2>teams</h2>
 <%= render "league_teams" %>
 <p><%= link_to "Create a team", new_league_team_path(@league) %></p>
-<p><%= link_to "Create a team stat", new_league_stat_type_path(@league)  %></p>
+<p><%= link_to "Stats", league_stat_types_path(@league)  %></p>
