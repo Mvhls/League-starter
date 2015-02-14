@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150214011312) do
+ActiveRecord::Schema.define(version: 20150214011802) do
 
   create_table "games", force: true do |t|
     t.integer  "league_id"
-    t.integer  "team1_id"
-    t.integer  "team2_id"
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
